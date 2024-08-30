@@ -71,6 +71,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         UnitOfMeasure pintUom = dashUnitOfMeasure.get();
         UnitOfMeasure cupUom = cupUniteOfMeasure.get();
 
+
         //get categories
         Optional<Category> americanCategoryOptional = categoryRepository.findByDescription("American");
         if (!americanCategoryOptional.isPresent()){
@@ -109,10 +110,11 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         guacNotes.setRecipe(guacRecipe);
         guacRecipe.setNotes(guacNotes);
 
-        guacRecipe.getIngredients().add(new Ingredient("Avacdo",new BigDecimal(2), eachUom, guacRecipe));
-        guacRecipe.getIngredients().add(new Ingredient("Salt", new BigDecimal(1), pintUom, guacRecipe));
-        guacRecipe.getIngredients().add(new Ingredient("Fresh Lime Juice", new BigDecimal(.5), tableSpoonUom, guacRecipe));
-        guacRecipe.getIngredients().add(new Ingredient("sugar", new BigDecimal(1),teaSpoonUom, guacRecipe));
+        //guacRecipe.getIngredients().add(new Ingredient("Avacdo",new BigDecimal(2), eachUom));
+        guacRecipe.addIngredient(new Ingredient("Avacdo",new BigDecimal(2), eachUom));
+        guacRecipe.addIngredient(new Ingredient("Salt", new BigDecimal(1), pintUom));
+        guacRecipe.addIngredient(new Ingredient("Fresh Lime Juice", new BigDecimal(.5), tableSpoonUom));
+        guacRecipe.addIngredient(new Ingredient("sugar", new BigDecimal(1),teaSpoonUom));
 
         guacRecipe.getCategories().add(americanCategory);
         guacRecipe.getCategories().add(mexicanCategory);
@@ -145,10 +147,10 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         lemonadeNote.setRecipe(lemonadeRecipe);
         lemonadeRecipe.setNotes(lemonadeNote);
 
-        lemonadeRecipe.getIngredients().add(new Ingredient("Lemon", new BigDecimal(3), eachUom, lemonadeRecipe));
-        lemonadeRecipe.getIngredients().add(new Ingredient("Sugar", new BigDecimal(1), pintUom, lemonadeRecipe));
-        lemonadeRecipe.getIngredients().add(new Ingredient("Ice", new BigDecimal(2), teaSpoonUom, lemonadeRecipe));
-        lemonadeRecipe.getIngredients().add(new Ingredient("salt", new BigDecimal(.5), tableSpoonUom, lemonadeRecipe));
+        lemonadeRecipe.addIngredient(new Ingredient("Lemon", new BigDecimal(3), eachUom));
+        lemonadeRecipe.addIngredient(new Ingredient("Sugar", new BigDecimal(1), pintUom));
+        lemonadeRecipe.addIngredient(new Ingredient("Ice", new BigDecimal(2), teaSpoonUom));
+        lemonadeRecipe.addIngredient(new Ingredient("salt", new BigDecimal(.5), tableSpoonUom));
         lemonadeRecipe.getCategories().add(americanCategory);
         lemonadeRecipe.getCategories().add(mexicanCategory);
 
