@@ -23,6 +23,7 @@ public class RecipeServiceImpl implements RecipeService{
         Set<Recipe> recipes = new HashSet<>();
         recipeRepository.findAll().iterator().forEachRemaining(recipes::add);
         //need to check itereator
-        return null;
+        //return null;
+        return recipes;
     }
 }
