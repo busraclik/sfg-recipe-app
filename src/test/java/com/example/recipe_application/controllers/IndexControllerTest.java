@@ -49,7 +49,6 @@ class IndexControllerTest {
     void getIndexPage() {
 
         //given
-        //test
         Set<Recipe> recipes = new HashSet<>();
         recipes.add(new Recipe());
 
