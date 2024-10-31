@@ -117,7 +117,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         guacRecipe.setNotes(guacNotes);
 
         //guacRecipe.getIngredients().add(new Ingredient("Avacdo",new BigDecimal(2), eachUom));
-        guacRecipe.addIngredient(new Ingredient("Avacdo",new BigDecimal(2), eachUom));
+        guacRecipe.addIngredient(new Ingredient("Avocado",new BigDecimal(2), eachUom));
         guacRecipe.addIngredient(new Ingredient("Salt", new BigDecimal(1), pintUom));
         guacRecipe.addIngredient(new Ingredient("Fresh Lime Juice", new BigDecimal(.5), tableSpoonUom));
         guacRecipe.addIngredient(new Ingredient("sugar", new BigDecimal(1),teaSpoonUom));

@@ -3,9 +3,11 @@ package com.example.recipe_application.services;
 import com.example.recipe_application.domain.Recipe;
 import com.example.recipe_application.repository.RecipeRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @Slf4j
@@ -26,4 +28,17 @@ public class RecipeServiceImpl implements RecipeService{
         //return null;
         return recipes;
     }
+
+    @Override
+    public Recipe findById(Long l) {
+        log.debug("find by id");
+        Optional<Recipe> recipeOptional = recipeRepository.findById(l);
+
+        if (!recipeOptional.isPresent()){
+            throw new RuntimeException("not found");
+        }
+        return recipeOptional.get();
+    }
+
+
 }
