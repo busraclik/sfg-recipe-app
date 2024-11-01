@@ -15,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class RecipeServiceImplTest {
+    //test
     RecipeServiceImpl recipeService;
     @Mock
     RecipeRepository recipeRepository;
