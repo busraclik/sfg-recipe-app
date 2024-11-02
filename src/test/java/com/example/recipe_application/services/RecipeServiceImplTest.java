@@ -15,7 +15,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class RecipeServiceImplTest {
-    //test
     RecipeServiceImpl recipeService;
     @Mock
     RecipeRepository recipeRepository;
@@ -48,7 +47,7 @@ class RecipeServiceImplTest {
         Optional<Recipe> optionalRecipe = Optional.of(recipe1);
         when(recipeRepository.findById(anyLong())).thenReturn(optionalRecipe);
 
-        Recipe recipeReturned = recipeService.findById(1L);
+        Optional<Recipe> recipeReturned = recipeService.findById(1L);
         assertNotNull(recipeReturned);
         verify(recipeRepository, times(1)).findById(anyLong());
         verify(recipeRepository, never()).findAll();
