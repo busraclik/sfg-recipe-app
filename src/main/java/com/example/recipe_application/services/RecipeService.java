@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 import java.util.Set;
 
-@Service
+
 public interface RecipeService {
     Set<Recipe> getRecipes();
     Optional<Recipe> findById(Long l);

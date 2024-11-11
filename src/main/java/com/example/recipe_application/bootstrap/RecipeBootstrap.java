@@ -7,12 +7,16 @@ import com.example.recipe_application.repository.UniteOfMeasureRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.*;
 
+import static java.rmi.server.LogStream.log;
+
 @Slf4j
+@Component
 public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
     private final CategoryRepository categoryRepository;
@@ -29,8 +33,16 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
     @Override
     @Transactional
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        recipeRepository.saveAll(getRecipes());
-        log.debug("loading bootstrap data");
+//
+//        recipeRepository.deleteAll();
+//        recipeRepository.saveAll(getRecipes());
+//        log.debug("loading bootstrap data");
+//////
+        if (recipeRepository.count() == 0) {
+            recipeRepository.saveAll(getRecipes());
+            log.debug("loading bootstrap data");
+        }
+
     }
 
     private List<Recipe> getRecipes(){
@@ -74,7 +86,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         UnitOfMeasure tableSpoonUom = tableSpoonUnitOfMeasure.get();
         UnitOfMeasure teaSpoonUom = teaspoonUnitOfMeasure.get();
         UnitOfMeasure dashUom = dashUnitOfMeasure.get();
-        UnitOfMeasure pintUom = dashUnitOfMeasure.get();
+        UnitOfMeasure pintUom = pintUniteOfMeasure.get();
         UnitOfMeasure cupUom = cupUniteOfMeasure.get();
 
 
@@ -116,14 +128,13 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         guacNotes.setRecipe(guacRecipe);
         guacRecipe.setNotes(guacNotes);
 
-        //guacRecipe.getIngredients().add(new Ingredient("Avacdo",new BigDecimal(2), eachUom));
         guacRecipe.addIngredient(new Ingredient("Avocado",new BigDecimal(2), eachUom));
-        guacRecipe.addIngredient(new Ingredient("Salt", new BigDecimal(1), pintUom));
-        guacRecipe.addIngredient(new Ingredient("Fresh Lime Juice", new BigDecimal(.5), tableSpoonUom));
-        guacRecipe.addIngredient(new Ingredient("sugar", new BigDecimal(1),teaSpoonUom));
+        guacRecipe.addIngredient(new Ingredient("Salmon", new BigDecimal(1), pintUom));
+        guacRecipe.addIngredient(new Ingredient("Fresh Lime Juice", new BigDecimal(5), tableSpoonUom));
+        guacRecipe.addIngredient(new Ingredient("Salt", new BigDecimal(1),teaSpoonUom));
 
         guacRecipe.getCategories().add(americanCategory);
-        guacRecipe.getCategories().add(mexicanCategory);
+//        guacRecipe.getCategories().add(mexicanCategory);
 
         //return to recepies
         recipes.add(guacRecipe);
@@ -153,13 +164,13 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         lemonadeNote.setRecipe(lemonadeRecipe);
         lemonadeRecipe.setNotes(lemonadeNote);
 
-        lemonadeRecipe.addIngredient(new Ingredient("Lemon", new BigDecimal(3), eachUom));
-        lemonadeRecipe.addIngredient(new Ingredient("Sugar", new BigDecimal(1), pintUom));
-        lemonadeRecipe.addIngredient(new Ingredient("Ice", new BigDecimal(2), teaSpoonUom));
-        lemonadeRecipe.addIngredient(new Ingredient("salt", new BigDecimal(.5), tableSpoonUom));
+        lemonadeRecipe.addIngredient(new Ingredient("Lemon", new BigDecimal(3), dashUom));
+        lemonadeRecipe.addIngredient(new Ingredient("Sugar", new BigDecimal(1), cupUom));
+       // lemonadeRecipe.addIngredient(new Ingredient("Ice", new BigDecimal(2), eachUom));
+//        lemonadeRecipe.addIngredient(new Ingredient("salt", new BigDecimal(5), tableSpoonUom));
         lemonadeRecipe.getCategories().add(americanCategory);
         lemonadeRecipe.getCategories().add(mexicanCategory);
-
+//
         recipes.add(lemonadeRecipe);
         return recipes;
 

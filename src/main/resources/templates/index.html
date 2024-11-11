@@ -12,48 +12,42 @@
 </head>
 <body>
 
-<div class="container-fluid" style="margin-top: 20px">
-    <div class="row"></div>
-    <div class="col-md-6 col-md-offset-3">
-        <div class="card">
-            <div class="card-header">
-                <h1 class="card-title">My Recipes!</h1>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-hover">
-                        <thead class="thead-inverse">
-                        <tr>
-                            <th>ID</th>
-                            <th>Description</th>
-                            <th>View</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Tasty goodness 1</td>
-                            <td><a href="/recipe/show/1">View</a></td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Tasty goodness 2</td>
-                            <td><a href="/recipe/show/2">View</a></td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Tasty goodness 3</td>
-                            <td><a href="/recipe/show/3">View</a></td>
-                        </tr>
-                        </tbody>
-                    </table>
+<div class="container-fluid" style="margin-top: 20px; height: 100vh;">
+    <div class="row justify-content-center align-items-center" style="height: 100%;">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="card-title text-center">My Recipes!</h1>
                 </div>
-                <div th:if="${#lists.isEmpty(recipes)}">
-                    <p>No recipes available.</p>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead class="thead-inverse">
+                            <tr>
+                                <th>ID</th>
+                                <th>Description</th>
+                                <th>View</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <!-- Thymeleaf ile dinamik veri eklemek için th:each kullanıyoruz -->
+                            <tr th:each="recipe : ${recipes}">
+                                <td th:text="${recipe.id}"></td>
+                                <td th:text="${recipe.description}"></td>
+                                <td><a th:href="@{/recipe/show/{id}(id=${recipe.id})}">View</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Eğer recipes listesi boşsa gösterilecek mesaj -->
+                    <div th:if="${#lists.isEmpty(recipes)}">
+                        <p>No recipes available.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 </body>
 </html>
