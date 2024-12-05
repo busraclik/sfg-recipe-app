@@ -33,6 +33,7 @@ public class Recipe {
     private Byte[] images;
     @Enumerated(value = EnumType.STRING)
     private Difficulty difficulty;
+
     @OneToOne(cascade = CascadeType.ALL)
     private Notes notes;
 
@@ -44,8 +45,12 @@ public class Recipe {
 
 
     public void setNotes(Notes notes) {
-        this.notes = notes;
-        notes.setRecipe(this);
+        if (notes != null) {
+            this.notes = notes;
+            notes.setRecipe(this);
+        }
+//        this.notes = notes;
+//        notes.setRecipe(this);
     }
 
     //helper method

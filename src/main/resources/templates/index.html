@@ -27,6 +27,7 @@
                                 <th>ID</th>
                                 <th>Description</th>
                                 <th>View</th>
+                                <th>Update</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -34,7 +35,10 @@
                             <tr th:each="recipe : ${recipes}">
                                 <td th:text="${recipe.id}"></td>
                                 <td th:text="${recipe.description}"></td>
-                                <td><a th:href="@{/recipe/show/{id}(id=${recipe.id})}">View</a></td>
+<!--                                <td><a th:href="@{/recipe/show/{id}(id=${recipe.id})}">View</a></td>-->
+<!--                                <td><a th:href="@{/recipe/update/{id}(id=${recipe.id})}">Update</a></td>-->
+                                <td><a href="#" th:href="@{'/recipe/' + ${recipe.id} + '/show'}">View</a></td>
+                                <td><a href="#" th:href="@{'/recipe/' + ${recipe.id} + '/update'}">Update</a></td>
                             </tr>
                             </tbody>
                         </table>

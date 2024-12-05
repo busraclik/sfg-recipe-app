@@ -50,6 +50,14 @@ public class RecipeServiceImpl implements RecipeService{
         return Optional.of(recipeOptional.get());
     }
 
+    @Override
+    @Transactional
+    public RecipeCommand findCommandById(Long l) {
+        log.error("hereee test service icinde ");
+        Optional<Recipe> optionalRecipeCommand = findById(l);
+       return recipeToRecipeCommand.convert(optionalRecipeCommand.get());
+    }
+
     @Transactional
     @Override
     public RecipeCommand saveRecipeCommand(RecipeCommand command) {
