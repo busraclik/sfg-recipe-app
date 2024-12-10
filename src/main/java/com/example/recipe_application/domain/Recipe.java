@@ -35,6 +35,7 @@ public class Recipe {
     private Difficulty difficulty;
 
     @OneToOne(cascade = CascadeType.ALL)
+    //@JoinColumn(name = "notes_id")
     private Notes notes;
 
     @ManyToMany
