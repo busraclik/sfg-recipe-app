@@ -20,7 +20,6 @@ class RecipeServiceImplTest {
     RecipeServiceImpl recipeService;
     @Mock
     RecipeRepository recipeRepository;
-    @Mock
     RecipeCommandToRecipe recipeCommandToRecipe;
     RecipeToRecipeCommand recipeToRecipeCommand;
 

@@ -38,7 +38,6 @@ class RecipeControllerTest {
         Recipe recipe = new Recipe();
         recipe.setId(1L);
 
-        //MockMvc mockMvc = MockMvcBuilders.standaloneSetup(recipeController).build();
         mockMvc.perform(MockMvcRequestBuilders.get("/recipe/1/show"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("recipe/show"));
@@ -75,6 +74,7 @@ class RecipeControllerTest {
         RecipeCommand command = new RecipeCommand();
         command.setId(2L);
         when(recipeService.findCommandById(anyLong())).thenReturn(command);
+
         mockMvc.perform(MockMvcRequestBuilders.get("/recipe/2/update"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("recipe/recipeform"))
