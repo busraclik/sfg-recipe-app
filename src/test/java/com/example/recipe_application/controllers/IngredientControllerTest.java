@@ -4,6 +4,7 @@ import com.example.recipe_application.commands.IngredientCommand;
 import com.example.recipe_application.commands.RecipeCommand;
 import com.example.recipe_application.services.IngredientService;
 import com.example.recipe_application.services.RecipeService;
+import com.example.recipe_application.services.UnitOfMeasureService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -26,12 +27,14 @@ class IngredientControllerTest {
     IngredientController ingredientController;
     @Mock
     IngredientService ingredientService;
+    @Mock
+    UnitOfMeasureService unitOfMeasureService;
     MockMvc mockMvc;
 
     @BeforeEach
     void setUp() throws Exception {
         MockitoAnnotations.openMocks(this);
-        ingredientController = new IngredientController(recipeService, ingredientService);
+        ingredientController = new IngredientController(recipeService, ingredientService, unitOfMeasureService);
         mockMvc = MockMvcBuilders.standaloneSetup(ingredientController).build();
     }
 

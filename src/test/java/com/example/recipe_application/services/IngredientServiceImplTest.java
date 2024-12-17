@@ -6,7 +6,6 @@ import com.example.recipe_application.converters.IngredientToIngredientCommand;
 import com.example.recipe_application.domain.Ingredient;
 import com.example.recipe_application.domain.Recipe;
 import com.example.recipe_application.repository.RecipeRepository;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -16,11 +15,8 @@ import org.mockito.MockitoAnnotations;
 
 import java.util.Optional;
 import java.util.Set;
-
-import static junit.framework.TestCase.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.*;
+
 
 public class IngredientServiceImplTest {
 
