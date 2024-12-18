@@ -1,11 +1,13 @@
 package com.example.recipe_application.services;
 
 import com.example.recipe_application.commands.IngredientCommand;
+import com.example.recipe_application.commands.RecipeCommand;
 import com.example.recipe_application.converters.IngredientCommandToIngredient;
 import com.example.recipe_application.converters.IngredientToIngredientCommand;
 import com.example.recipe_application.domain.Ingredient;
 import com.example.recipe_application.domain.Recipe;
 import com.example.recipe_application.repository.RecipeRepository;
+import com.example.recipe_application.repository.UniteOfMeasureRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -15,7 +17,12 @@ import org.mockito.MockitoAnnotations;
 
 import java.util.Optional;
 import java.util.Set;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.*;
 
 
 public class IngredientServiceImplTest {
@@ -23,7 +30,10 @@ public class IngredientServiceImplTest {
     @Mock
     RecipeRepository recipeRepository;
     @Mock
+    UniteOfMeasureRepository uniteOfMeasureRepository;
+    @Mock
     IngredientToIngredientCommand ingredientToIngredientCommand;
+    @Mock
     IngredientCommandToIngredient ingredientCommandToIngredient;
     @InjectMocks
     IngredientServiceImpl ingredientService;
@@ -32,7 +42,7 @@ public class IngredientServiceImplTest {
     @BeforeEach
     void setUp() throws Exception{
         MockitoAnnotations.openMocks(this);
-        ingredientService = new IngredientServiceImpl(recipeRepository ,ingredientToIngredientCommand);
+        ingredientService = new IngredientServiceImpl(recipeRepository , uniteOfMeasureRepository, ingredientToIngredientCommand, ingredientCommandToIngredient);
     }
 
 //    @Test
@@ -74,10 +84,10 @@ public class IngredientServiceImplTest {
         mockRecipe.setIngredients(Set.of(mockIngredient));
 
         // Mock repository behavior
-        Mockito.when(recipeRepository.findById(1L)).thenReturn(Optional.of(mockRecipe));
+        when(recipeRepository.findById(1L)).thenReturn(Optional.of(mockRecipe));
 
         // Mock converter behavior
-        Mockito.when(ingredientToIngredientCommand.convert(mockIngredient))
+        when(ingredientToIngredientCommand.convert(mockIngredient))
                 .thenReturn(new IngredientCommand());
 
         // Call the method
@@ -87,4 +97,32 @@ public class IngredientServiceImplTest {
         assertNotNull(result, "IngredientCommand should not be null");
     }
 
-}
+
+//    @Test
+//    void saveRecipeCommand() throws Exception{
+//        IngredientCommand ingredientCommand = new IngredientCommand();
+//        ingredientCommand.setId(3L);
+//        ingredientCommand.setRecipeId(2L);
+//
+//        Optional<Recipe> recipeOptional = Optional.of(new Recipe());
+//
+//        Recipe savedRecipe = new Recipe();
+//        savedRecipe.addIngredient(new Ingredient());
+//        savedRecipe.getIngredients().iterator().next().setId(3L);
+//
+//        when(recipeRepository.findById(anyLong())).thenReturn(recipeOptional);
+//        when(recipeRepository.save(any())).thenReturn(savedRecipe);
+//        when(ingredientCommandToIngredient.convert(ingredientCommand))
+//                .thenReturn(new Ingredient());
+//
+//
+//        IngredientCommand savedCommand = ingredientService.saveIngredientCommand(ingredientCommand);
+//
+//        assertEquals(Long.valueOf(3L), savedCommand.getId());
+//        verify(recipeRepository, times(1)).findById(anyLong());
+//        verify(recipeRepository, times(1)).save(any(Recipe.class));
+//
+//    }
+
+
+    }
