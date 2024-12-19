@@ -8,9 +8,7 @@ import com.example.recipe_application.services.UnitOfMeasureService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.stream.Stream;
 
@@ -61,7 +59,26 @@ public class IngredientController {
         return "recipe/ingredient/ingredientform";
     }
 
+    @PostMapping("recipe/{recipeId}/ingredient")
+    public String saveOrUpdate(@ModelAttribute IngredientCommand command){
+        IngredientCommand savedCommand = ingredientService.saveIngredientCommand(command);
 
+        log.debug("saved receipe id:" + savedCommand.getRecipeId());
+        log.debug("saved ingredient id:" + savedCommand.getId());
+
+        return "redirect:/recipe/" + savedCommand.getRecipeId() + "/ingredient/" + savedCommand.getId() + "/show";
+    }
+
+
+//    @PostMapping
+//    @RequestMapping("/recipe/{recipeId}/ingredient")
+//  public String saveOrUpdate(@ModelAttribute IngredientCommand ingredientCommand){
+//        log.debug("her is ingredient save");
+//
+//        IngredientCommand savedIngredientCommand = ingredientService.saveIngredientCommand(ingredientCommand);
+//
+//        return  "redirect:/recipe/" + savedIngredientCommand.getRecipeId() + "/ingredient" + savedIngredientCommand.getId() + "/show";
+//  }
 
 
 
