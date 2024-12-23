@@ -1,10 +1,10 @@
 package com.example.recipe_application.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 //@Data
 @Getter
@@ -15,5 +15,10 @@ public class UnitOfMeasure {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String description;
+//    @OneToOne(mappedBy = "unitOfMeasure")
+//    private Ingredient ingredient;
+
+    @OneToMany(mappedBy = "unitOfMeasure")
+    private Set<Ingredient> ingredients = new HashSet<>();
 
 }
