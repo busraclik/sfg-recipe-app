@@ -1,7 +1,6 @@
 package com.example.recipe_application.services;
 
 import com.example.recipe_application.commands.IngredientCommand;
-import com.example.recipe_application.commands.RecipeCommand;
 import com.example.recipe_application.converters.IngredientCommandToIngredient;
 import com.example.recipe_application.converters.IngredientToIngredientCommand;
 import com.example.recipe_application.domain.Ingredient;
@@ -12,16 +11,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import java.util.Optional;
 import java.util.Set;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
+
 import static org.mockito.Mockito.*;
 
 
