@@ -59,6 +59,7 @@ public class IngredientServiceImpl implements IngredientService{
     @Override
     @Transactional
     public IngredientCommand saveIngredientCommand(IngredientCommand ingredientCommand) {
+
        Optional<Recipe> recipeOptional = recipeRepository.findById(ingredientCommand.getRecipeId());
 
        if (!recipeOptional.isPresent()){
@@ -86,8 +87,6 @@ public class IngredientServiceImpl implements IngredientService{
                Ingredient ingredient = ingredientCommandToIngredient.convert(ingredientCommand);
                ingredient.setRecipe(recipe);
                recipe.addIngredient(ingredient);
-               //add new ingredient
-               //recipe.addIngredient(ingredientCommandToIngredient.convert(ingredientCommand));
            }
 
 
@@ -110,15 +109,6 @@ public class IngredientServiceImpl implements IngredientService{
 
            //to do check for fail
            return ingredientToIngredientCommand.convert(savedIngredientOptional.get());
-
-
-
-//           Recipe savedRecipe = recipeRepository.save(recipe);
-//           return ingredientToIngredientCommand.convert(savedRecipe.getIngredients()
-//                                                                   .stream()
-//                                                                   .filter(recipeIngredients -> recipeIngredients.getId().equals(ingredientCommand.getId()))
-//                                                                   .findFirst()
-//                                                                   .get());
 
        }
     }
