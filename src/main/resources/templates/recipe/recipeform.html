@@ -37,7 +37,7 @@
                             <div class="row">
                                 <div class="col-md-3 form-group" th:class="${#fields.hasErrors('description')}
                                 ? 'col-md-3 form-group has-error' : 'col-md-3 form-group'">
-                                    <label th:text="#{recipe.description}">Recipe Description d:</label>
+                                    <label th:text="#{recipe.description}">Recipe Description: </label>
                                     <input type="text" class="form-control" th:field="*{description}" th:errorclass="has-error"/>
                                     <span class="help-block" th:if="${#fields.hasErrors('description')}">
                                         <ul>
@@ -46,6 +46,20 @@
                                     </span>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-12 form-group">
+                                    <!-- Display the current image -->
+                                    <label>Recipe Image:</label>
+                                    <div>
+                                        <img th:src="@{'/images/' + ${recipe.id} + '.jpg'}" alt="Recipe Image" class="img-thumbnail" style="max-width: 200px;"/>
+                                    </div>
+                                    <!-- Button to change the image -->
+                                    <div class="col-md-1" style="margin-top: 10px;">
+                                        <a class="btn btn-default" href="#" th:href="@{'/recipe/' + ${recipe.id} + '/image'}" role="button">Change Image</a>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="row">
                                 <div class="col-md-3 form-group">
                                     <label>Categories:</label>
