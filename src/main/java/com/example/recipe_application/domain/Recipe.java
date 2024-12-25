@@ -30,6 +30,7 @@ public class Recipe {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe" )
     private Set<Ingredient> ingredients = new HashSet<>();
     @Lob
+    @Column(columnDefinition = "LONGBLOB")
     private Byte[] images;
     @Enumerated(value = EnumType.STRING)
     private Difficulty difficulty;

@@ -4,24 +4,23 @@
     <meta charset="UTF-8"/>
     <title>Show Recipe</title>
 
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"
-          th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}">
+    <!-- Latest compiled and minified CSS (Bootstrap 5) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+          integrity="sha384-KyZXEJv3mN9v1JkKd9mCRQBy7YF2y6sYF3mv0XzDh7jr0tJ3X5wRhu4KJpsO0wdy"
+          crossorigin="anonymous">
 
-    <script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
 
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-            crossorigin="anonymous" th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+    <!-- Latest compiled and minified JavaScript (Bootstrap 5) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-pzjw8f+ua7Kw1TIq0w0tF6lbD4x25QQbf5gtZ28oN67t2Yh5e7Tz79d7RJ1tZl9Y"
+            crossorigin="anonymous"></script>
 </head>
 <body>
-<!--/*@thymesVar id="recipe" type="guru.springframework.domain.Recipe"*/-->
 <div class="container-fluid" style="margin-top: 20px">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <div class="pannel-group">
+            <div class="panel-group">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <div class="row">
@@ -50,8 +49,8 @@
                                 </ul>
                             </div>
                             <div class="col-md-6">
-                                <img src="../../static/images/guacamole400x400WithX.jpg"
-                                     th:src="@{'/recipe/' + ${recipe.id} + '/recipeimage'}"
+                                <img src="src/main/resources/static/images/recipe-1-photo.jpg"
+                                     th:src="@{'/recipe/' + ${recipe.id} + '/recipeImage'}"
                                      width="200" height="200">
                             </div>
                         </div>
