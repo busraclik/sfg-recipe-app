@@ -19,13 +19,10 @@ public class ImageServiceImpl implements ImageService{
         this.recipeRepository = recipeRepository;
     }
 
-
-
     @Override
     @Transactional
     public void saveImageFile(Long recipeId, MultipartFile file) {
       log.error("File uploaded.");
-
 
         try {
             Recipe recipe = recipeRepository.findById(recipeId).get();
@@ -41,6 +38,7 @@ public class ImageServiceImpl implements ImageService{
             recipe.setImages(byteObjects);
 
             recipeRepository.save(recipe);
+
         } catch (IOException e) {
             //todo handle better
             log.error("Error occurred", e);
