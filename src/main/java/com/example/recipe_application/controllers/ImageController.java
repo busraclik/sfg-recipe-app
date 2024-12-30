@@ -55,8 +55,6 @@ public class ImageController {
         InputStream is = new ByteArrayInputStream(byteArray);
         IOUtils.copy(is, response.getOutputStream());
 
-
-        //test
     }
 
 
