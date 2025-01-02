@@ -24,6 +24,7 @@ public class Recipe {
     private String url;
     private String source;
     @Lob
+    @Column(columnDefinition = "LONGTEXT")
     private String directions;
     //todo add
    // private Difficulty difficulty;
