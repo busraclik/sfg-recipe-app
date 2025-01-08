@@ -67,3 +67,15 @@
 padding: 2px;
 margin: 2px;
 }
+.header-text{
+   color: #6a4c9c !important; /* Açık mor rengi */
+}
+.link-view{
+   color: #6a4c9c !important; /* Açık mor rengi */
+}
+.link-update{
+   color: #6e7bff!important; /* Açık mor rengi */
+}
+.link-delete{
+    color: #ffa1a9 !important; /* Açık mor rengi */
+ }
