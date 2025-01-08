@@ -44,7 +44,16 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div class="col-md-6">
+<!--                            <div class="col-md-6">-->
+<!--                                <img src="src/main/resources/static/images/recipe-1-photo.jpg"-->
+<!--                                     th:src="@{'/recipe/' + ${recipe.id} + '/recipeImage'}"-->
+<!--                                     width="200" height="200">-->
+<!--                                <div class="col-md-1">-->
+<!--                                    <a class="btn btn-default" href="#"-->
+<!--                                       th:href="@{'/recipe/' + ${recipe.id} + '/image'}" role="button">Change Image</a>-->
+<!--                                </div>-->
+<!--                            </div>-->
+                            <div class="image-wrapper">
                                 <img src="src/main/resources/static/images/recipe-1-photo.jpg"
                                      th:src="@{'/recipe/' + ${recipe.id} + '/recipeImage'}"
                                      width="200" height="200">
@@ -53,6 +62,7 @@
                                        th:href="@{'/recipe/' + ${recipe.id} + '/image'}" role="button">Change Image</a>
                                 </div>
                             </div>
+
                         </div>
                         <div class="row">
                             <div class="col-md-3">

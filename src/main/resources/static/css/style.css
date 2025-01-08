@@ -1,11 +1,11 @@
 .card-title{
-        padding-top: 40px;
+        padding-top: 30px;
         }
 .card-header{
          background: linear-gradient(135deg, rgba(100, 100, 255, 0.1), rgba(255, 100, 100, 0.1)); /* Soft gradient */
            color: #333; /* Dark text for contrast */
            border-bottom: 2px solid rgba(0, 0, 0, 0.1); /* Subtle border */
-           padding: 20px; /* Extra padding for a spacious look */
+           padding: 8px; /* Extra padding for a spacious look */
            font-weight: bold;
            font-size: 1.25rem; /* Larger font size for better readability */
            transition: all 0.3s ease;
@@ -15,7 +15,7 @@
   background: linear-gradient(135deg, #6e7bff, #ff8a7b); /* Soft blue to pink gradient */
   color: white; /* Beyaz yazı rengi */
   font-size: 1rem; /* Buton yazı boyutu */
-  padding: 10px 20px; /* Yüksekliği ve genişliği ayarla */
+  padding: 5px 10px; /* Yüksekliği ve genişliği ayarla */
   border: none; /* Sınır yok */
   border-radius: 30px; /* Yuvarlak köşeler */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Hafif gölge efekti */
@@ -38,17 +38,17 @@
 /* Modern My Recipes Başlık Tasarımı */
 .card-title {
   font-family: 'Poppins', sans-serif; /* Modern ve şık bir yazı tipi */
-  font-size: 3.5rem; /* Başlık boyutunu büyüt */
+  font-size: 2.5rem; /* Başlık boyutunu büyüt */
   font-weight: 600; /* Kalın yazı */
   color: #6e7bff; /* Soft mavi rengi */
-  text-transform: uppercase; /* Tüm harfleri büyük yap */
+  text-transform: none; /* Tüm harfleri büyük yap */
   letter-spacing: 2px; /* Harfler arasındaki mesafeyi artır */
   text-align: center; /* Ortalamak için */
   background: linear-gradient(135deg, #6e7bff, #ff8a7b); /* Gradient renk geçişi */
   -webkit-background-clip: text; /* Yalnızca yazıyı boyamak için */
   color: transparent; /* Arka planın renk geçişini yazıya uygula */
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Gölgeleme */
-  padding: 20px 0; /* Üst ve alt dolgu */
+  padding: 10px 0; /* Üst ve alt dolgu */
   transition: all 0.3s ease; /* Hover efekti için geçiş */
 }
 
@@ -78,4 +78,37 @@ margin: 2px;
 }
 .link-delete{
     color: #ffa1a9 !important; /* Açık mor rengi */
+ }
+
+
+ .image-wrapper {
+     max-width: 200px;
+     padding: 10px;
+     background-color: #f8f9fa;
+     border-radius: 15px;
+     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+     text-align: center;
+ }
+
+ .image-wrapper img {
+     border-radius: 10px;
+     max-width: 100%;
+     height: auto;
+     transition: transform 0.3s ease;
+ }
+
+ .image-wrapper img:hover {
+     transform: scale(1.1);
+ }
+
+ .image-wrapper .btn {
+     margin-top: 10px;
+     background-color: #ffc2c7; /* Soft pembe arka plan */
+     color: #fff;
+     border-radius: 5px;
+     padding: 5px 10px;
+ }
+
+ .image-wrapper .btn:hover {
+     background-color: #ff5e6e; /* Hover efekti */
  }
