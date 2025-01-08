@@ -1,0 +1,69 @@
+.card-title{
+        padding-top: 40px;
+        }
+.card-header{
+         background: linear-gradient(135deg, rgba(100, 100, 255, 0.1), rgba(255, 100, 100, 0.1)); /* Soft gradient */
+           color: #333; /* Dark text for contrast */
+           border-bottom: 2px solid rgba(0, 0, 0, 0.1); /* Subtle border */
+           padding: 20px; /* Extra padding for a spacious look */
+           font-weight: bold;
+           font-size: 1.25rem; /* Larger font size for better readability */
+           transition: all 0.3s ease;
+}
+
+.btn {
+  background: linear-gradient(135deg, #6e7bff, #ff8a7b); /* Soft blue to pink gradient */
+  color: white; /* Beyaz yazı rengi */
+  font-size: 1rem; /* Buton yazı boyutu */
+  padding: 10px 20px; /* Yüksekliği ve genişliği ayarla */
+  border: none; /* Sınır yok */
+  border-radius: 30px; /* Yuvarlak köşeler */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Hafif gölge efekti */
+  cursor: pointer; /* Fare işareti */
+  transition: all 0.3s ease; /* Yumuşak geçişler */
+}
+
+/* Hover Etkisi */
+.btn:hover {
+  background: linear-gradient(135deg, #6e7bff, #ff5e6e); /* Hover'da renk değişimi */
+  transform: translateY(-3px); /* Hafif yukarı kayma efekti */
+}
+
+/* Focus Etkisi */
+.btn:focus {
+  outline: none; /* Odaklandığında dış hatları kaldır */
+  box-shadow: 0 0 0 3px rgba(104, 178, 255, 0.5); /* Focus rengini ekle */
+}
+
+/* Modern My Recipes Başlık Tasarımı */
+.card-title {
+  font-family: 'Poppins', sans-serif; /* Modern ve şık bir yazı tipi */
+  font-size: 3.5rem; /* Başlık boyutunu büyüt */
+  font-weight: 600; /* Kalın yazı */
+  color: #6e7bff; /* Soft mavi rengi */
+  text-transform: uppercase; /* Tüm harfleri büyük yap */
+  letter-spacing: 2px; /* Harfler arasındaki mesafeyi artır */
+  text-align: center; /* Ortalamak için */
+  background: linear-gradient(135deg, #6e7bff, #ff8a7b); /* Gradient renk geçişi */
+  -webkit-background-clip: text; /* Yalnızca yazıyı boyamak için */
+  color: transparent; /* Arka planın renk geçişini yazıya uygula */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Gölgeleme */
+  padding: 20px 0; /* Üst ve alt dolgu */
+  transition: all 0.3s ease; /* Hover efekti için geçiş */
+}
+
+/* Hover Etkisi */
+.card-title:hover {
+  transform: translateY(-5px); /* Hoverda yukarıya kayma efekti */
+  color: #fff; /* Hoverda renk değişimi */
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2); /* Hafif metin gölgesi ekle */
+}
+
+.panel-title {
+    color: #6a4c9c !important; /* Açık mor rengi */
+}
+
+*{
+padding: 2px;
+margin: 2px;
+}

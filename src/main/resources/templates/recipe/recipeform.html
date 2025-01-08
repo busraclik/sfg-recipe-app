@@ -4,21 +4,28 @@
     <meta charset="UTF-8"/>
     <title>Recipe Form</title>
 
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"
-          th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}">
 
-    <script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
+    <link href="/webjars/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-            crossorigin="anonymous" th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+    <link rel="stylesheet" href="/css/style.css">
+
+<!--     Latest compiled and minified CSS-->
+<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"-->
+<!--          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"-->
+<!--          th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}">-->
+
+<!--    <script src="/webjars/jquery/1.11.1/jquery.min.js"></script>-->
+
+<!--    &lt;!&ndash; Latest compiled and minified JavaScript &ndash;&gt;-->
+<!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"-->
+<!--            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"-->
+<!--            crossorigin="anonymous" th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>-->
+
 </head>
 <body>
 <!--/*@thymesVar id="recipe" type="guru.springframework.domain.Recipe"*/-->
-<div class="container-fluid" style="margin-top: 20px">
+<div class="container-fluid" style="margin-top: 25px; margin-left: 50px;">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <form th:object="${recipe}" th:action="@{/recipe}" method="post">
@@ -54,7 +61,7 @@
                                         <img th:src="@{'/images/' + ${recipe.id} + '.jpg'}" alt="Image" class="img-thumbnail" style="max-width: 200px;"/>
                                     </div>
                                     <!-- Button to change the image -->
-                                    <div class="col-md-1" style="margin-top: 10px;">
+                                    <div class="col-md-1" style="margin-top: 10px; width: auto;">
                                         <a class="btn btn-default" href="#" th:href="@{'/recipe/' + ${recipe.id} + '/image'}" role="button">Change Image</a>
                                     </div>
                                 </div>
@@ -204,21 +211,3 @@
 </div>
 </body>
 </html><!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Recipe Form</title>
-
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"
-          th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}">
-
-    <script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-            crossorigin="anonymous" th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
-</head>
-<body>

@@ -9,6 +9,7 @@
           integrity="sha384-KyZXEJv3mN9v1JkKd9mCRQBy7YF2y6sYF3mv0XzDh7jr0tJ3X5wRhu4KJpsO0wdy"
           crossorigin="anonymous">
 
+    <link rel="stylesheet" href="/css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
 
     <!-- Latest compiled and minified JavaScript (Bootstrap 5) -->
@@ -17,7 +18,7 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-<div class="container-fluid" style="margin-top: 20px">
+<div class="container-fluid" style="margin-top: 20px; margin-left: 30px;">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <div class="panel-group">
@@ -26,11 +27,6 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <h1 class="panel-title" th:text="${recipe.description}">Recipe Description Here!</h1>
-                            </div>
-
-                            <div class="col-md-1">
-                                <a class="btn btn-default" href="#"
-                                   th:href="@{'/recipe/' + ${recipe.id} + '/image'}" role="button">Change Image</a>
                             </div>
                         </div>
                     </div>
@@ -52,6 +48,10 @@
                                 <img src="src/main/resources/static/images/recipe-1-photo.jpg"
                                      th:src="@{'/recipe/' + ${recipe.id} + '/recipeImage'}"
                                      width="200" height="200">
+                                <div class="col-md-1">
+                                    <a class="btn btn-default" href="#"
+                                       th:href="@{'/recipe/' + ${recipe.id} + '/image'}" role="button">Change Image</a>
+                                </div>
                             </div>
                         </div>
                         <div class="row">

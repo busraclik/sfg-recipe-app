@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Recipe Home</title>
+
     <link href="/webjars/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-    <script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
-    <script src="/webjars/bootstrap/5.3.3/js/bootstrap.min.js"
-            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/style.css">
+
+<!--    <script src="/webjars/jquery/1.11.1/jquery.min.js"></script>-->
+<!--    <script src="/webjars/bootstrap/5.3.3/js/bootstrap.min.js"-->
+<!--            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>-->
 </head>
 <body>
 
@@ -17,19 +20,19 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
-                    <h1 class="card-title text-center">My Recipes!</h1>
-                    <a href="#" class="btn btn-primary float-end" th:href="@{/recipe/new}">New</a>
+                    <h1 class="card-title text-center" >My Recipes!</h1>
+                    <a href="#" class="btn btn-primary float-end" th:href="@{/recipe/new}">New Recipe</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead class="thead-inverse">
                             <tr>
-                                <th>ID</th>
-                                <th>Description</th>
-                                <th>View</th>
-                                <th>Update</th>
-                                <th>Delete</th>
+                                <th class="header-text">ID</th>
+                                <th class="header-text">Description</th>
+                                <th class="header-text">View</th>
+                                <th class="header-text">Update</th>
+                                <th class="header-text">Delete</th>
                             </tr>
                             </thead>
                             <tbody>
