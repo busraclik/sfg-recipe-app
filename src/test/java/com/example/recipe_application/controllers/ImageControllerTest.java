@@ -16,9 +16,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 public class ImageControllerTest {
 
@@ -33,7 +31,9 @@ public class ImageControllerTest {
     void setUp() {
         MockitoAnnotations.openMocks(this);
         imageController = new ImageController(recipeService,imageService);
-        mockMvc = MockMvcBuilders.standaloneSetup(imageController).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(imageController)
+                .setControllerAdvice(new ControllerExceptionHandler())
+                .build();
 
     }
 
@@ -69,5 +69,10 @@ public class ImageControllerTest {
 
     }
 
-    //new tests will be added
+    @Test
+   public void imageNumberFormatException() throws Exception{
+        mockMvc.perform(MockMvcRequestBuilders.get("/recipe/asdf/recipeImage"))
+                .andExpect(status().isBadRequest())
+                .andExpect(view().name("400error"));
+   }
 }
