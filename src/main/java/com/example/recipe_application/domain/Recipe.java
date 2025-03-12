@@ -40,7 +40,7 @@ public class Recipe {
     //@JoinColumn(name = "notes_id")
     private Notes notes;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "recipe_category",
     joinColumns = @JoinColumn(name = "recipe_id"),
     inverseJoinColumns = @JoinColumn(name = "category_id"))

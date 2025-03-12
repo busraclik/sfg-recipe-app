@@ -67,25 +67,42 @@
                                 </div>
                             </div>
 
+<!--                            <div class="row">-->
+<!--                                <div class="col-md-3 form-group">-->
+<!--                                    <label>Categories:</label>-->
+<!--                                </div>-->
+<!--                                <div class="col-md-9 form-group">-->
+<!--                                    <div class="radio">-->
+<!--                                        <label>-->
+<!--                                            <input type="checkbox" value=""/>-->
+<!--                                            Cat 1-->
+<!--                                        </label>-->
+<!--                                    </div>-->
+<!--                                    <div class="radio">-->
+<!--                                        <label>-->
+<!--                                            <input type="checkbox" value=""/>-->
+<!--                                            Cat 2-->
+<!--                                        </label>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
                             <div class="row">
                                 <div class="col-md-3 form-group">
                                     <label>Categories:</label>
                                 </div>
                                 <div class="col-md-9 form-group">
-                                    <div class="radio">
-                                        <label>
-                                            <input type="checkbox" value=""/>
-                                            Cat 1
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
-                                            <input type="checkbox" value=""/>
-                                            Cat 2
-                                        </label>
+                                    <div th:each="category : ${categories}">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" th:value="${category.id}" th:name="categories"
+                                                       th:checked="${selectedCategories != null and selectedCategories.contains(category.id)}"/>
+                                                <span th:text="${category.description}"></span>
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+
                             <div class="row">
                                 <div class="col-md-3 form-group" th:class="${#fields.hasErrors('prepTime')}
                                 ? 'col-md-3 form-group has-error' : 'col-md-3 form-group'">

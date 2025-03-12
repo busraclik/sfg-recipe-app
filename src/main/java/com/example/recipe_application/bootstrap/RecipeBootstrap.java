@@ -134,7 +134,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         guacRecipe.addIngredient(new Ingredient("Salt", new BigDecimal(1),teaSpoonUom));
 
         guacRecipe.getCategories().add(americanCategory);
-//        guacRecipe.getCategories().add(mexicanCategory);
+        guacRecipe.getCategories().add(mexicanCategory);
 
         //return to recepies
         recipes.add(guacRecipe);

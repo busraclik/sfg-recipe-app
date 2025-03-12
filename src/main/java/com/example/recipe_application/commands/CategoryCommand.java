@@ -10,4 +10,10 @@ import lombok.Setter;
 public class CategoryCommand {
     private Long id;
     private String description;
+
+    // ID'yi alabilen bir constructor
+    public CategoryCommand(Long id) {
+        this.id = id;
+    }
+
 }

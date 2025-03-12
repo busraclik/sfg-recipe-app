@@ -1,23 +1,35 @@
 package com.example.recipe_application.controllers;
 
+import com.example.recipe_application.commands.CategoryCommand;
 import com.example.recipe_application.commands.RecipeCommand;
+import com.example.recipe_application.domain.Category;
 import com.example.recipe_application.domain.Recipe;
+import com.example.recipe_application.exceptions.NotFoundException;
+import com.example.recipe_application.services.CategoryService;
 import com.example.recipe_application.services.RecipeService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 
 @Slf4j
 @Controller
 public class RecipeController {
     private final RecipeService recipeService;
+    private final CategoryService categoryService;
 
-    public RecipeController(RecipeService recipeService) {
+    public RecipeController(RecipeService recipeService, CategoryService categoryService) {
         this.recipeService = recipeService;
+        this.categoryService = categoryService;
     }
 
     @GetMapping("/recipe/{id}/show")
@@ -37,7 +49,15 @@ public class RecipeController {
 
     @GetMapping("/recipe/new")
     public String newRecipe(Model model){
+//        model.addAttribute("recipe", new RecipeCommand());
+//        return "recipe/recipeform";
+        // Yeni bir RecipeCommand nesnesi oluştur
         model.addAttribute("recipe", new RecipeCommand());
+
+        // Kategorileri veritabanından al
+        List<Category> categories = categoryService.findAll();  // Kategorileri al
+        model.addAttribute("categories", categories);  // Kategorileri modele ekle
+
         return "recipe/recipeform";
     }
 
@@ -47,11 +67,77 @@ public class RecipeController {
         return "recipe/recipeform";
     }
 
+//    @PostMapping("/recipe")
+//    public String saveOrUpdate(@ModelAttribute RecipeCommand recipeCommand){
+//        RecipeCommand savedCommand = recipeService.saveRecipeCommand(recipeCommand);
+//        return "redirect:/recipe/" + savedCommand.getId() + "/show";
+//    }
+
+//    @PostMapping("/recipe")
+//    public String saveOrUpdate(@ModelAttribute RecipeCommand recipeCommand,
+//                               @RequestParam List<Long> categories) {
+//
+//        // Kategori ID'lerini CategoryCommand nesnelerine dönüştür
+//        Set<CategoryCommand> categoryCommands = categories.stream()
+//                .map(id -> new CategoryCommand())  // CategoryCommand sınıfında ID'yi alabilen bir constructor olması gerek
+//                .collect(Collectors.toSet());
+//
+//        // RecipeCommand'a kategorileri set et
+//        recipeCommand.setCategories(categoryCommands);
+//
+//        // RecipeCommand'ı kaydet
+//        RecipeCommand savedCommand = recipeService.saveRecipeCommand(recipeCommand);
+//
+//        // Başarılı kayıttan sonra yönlendirme
+//        return "redirect:/recipe/" + savedCommand.getId() + "/show";
+//    }
+
+//    @PostMapping("/recipe")
+//    public String saveOrUpdate(@ModelAttribute RecipeCommand recipeCommand,
+//                               @RequestParam List<Long> categories) {
+//
+//        // Kategori ID'lerini CategoryCommand nesnelerine dönüştür
+//        Set<CategoryCommand> categoryCommands = categories.stream()
+//                .map(CategoryCommand::new)  // ID'yi alarak CategoryCommand nesnesi oluşturuyoruz
+//                .collect(Collectors.toSet());
+//
+//        // RecipeCommand'a kategorileri set et
+//        recipeCommand.setCategories(categoryCommands);
+//
+//        // RecipeCommand'ı kaydet
+//        RecipeCommand savedCommand = recipeService.saveRecipeCommand(recipeCommand);
+//
+//        // Başarılı kayıttan sonra yönlendirme
+//        return "redirect:/recipe/" + savedCommand.getId() + "/show";
+//    }
+
+
     @PostMapping("/recipe")
-    public String saveOrUpdate(@ModelAttribute RecipeCommand recipeCommand){
+    public String saveOrUpdate(@ModelAttribute RecipeCommand recipeCommand,
+                               BindingResult bindingResult) {
+
+        // Eğer validation hatası varsa, formu tekrar render et
+        if (bindingResult.hasErrors()) {
+            System.out.println("Hata var, formu geri gönder");
+            //return "recipe/form";  // Hata varsa formu geri gönderiyoruz
+        }
+
+        // Kategori ID'lerini CategoryCommand nesnelerine dönüştür
+        Set<CategoryCommand> categoryCommands = recipeCommand.getCategories().stream()
+                .map(category -> new CategoryCommand(category.getId()))  // Category'den id alıp CategoryCommand oluşturuyoruz
+                .collect(Collectors.toSet());
+
+        // RecipeCommand'a kategorileri set et
+        recipeCommand.setCategories(categoryCommands);
+
+        // RecipeCommand'ı kaydet
         RecipeCommand savedCommand = recipeService.saveRecipeCommand(recipeCommand);
+
+        // Başarılı kayıttan sonra yönlendirme
         return "redirect:/recipe/" + savedCommand.getId() + "/show";
     }
+
+
 
     @GetMapping("/recipe/{id}/delete")
     public String deleteById(@PathVariable String id){
@@ -60,6 +146,27 @@ public class RecipeController {
         return "redirect:/";
     }
 
-//test
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(NotFoundException.class)
+    public ModelAndView handleNotFound(Exception exception){
+        log.error("Handling not found exception.");
+        log.error(exception.getMessage());
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("404error");
+        modelAndView.addObject("exception", exception);
+        return modelAndView;
+    }
+
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(NumberFormatException.class)
+    public ModelAndView handleNumberFormat(Exception exception){
+        log.error("Handling Number Format Exception");
+        log.error(exception.getMessage());
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("400error");
+        modelAndView.addObject("exception", exception);
+        return modelAndView;
+    }
 
 }

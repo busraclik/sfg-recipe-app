@@ -4,6 +4,7 @@ import com.example.recipe_application.commands.RecipeCommand;
 import com.example.recipe_application.converters.RecipeCommandToRecipe;
 import com.example.recipe_application.converters.RecipeToRecipeCommand;
 import com.example.recipe_application.domain.Recipe;
+import com.example.recipe_application.exceptions.NotFoundException;
 import com.example.recipe_application.repository.RecipeRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.crossstore.ChangeSetPersister;
@@ -40,12 +41,12 @@ public class RecipeServiceImpl implements RecipeService{
 
     @Override
     public Optional<Recipe> findById(Long l) {
-        log.debug("find by id");
-
-        Optional<Recipe> recipeOptional = recipeRepository.findById(l);
+      Optional<Recipe> recipeOptional = recipeRepository.findById(l);
 
         if (!recipeOptional.isPresent()){
-            throw new RuntimeException("not found");
+            //throw new RuntimeException("not found");
+            //throw custom exception
+            throw new NotFoundException("Recipe Not Found For ID value:" + l.toString());
         }
         return Optional.of(recipeOptional.get());
     }
@@ -53,7 +54,6 @@ public class RecipeServiceImpl implements RecipeService{
     @Override
     @Transactional
     public RecipeCommand findCommandById(Long l) {
-        log.error("hereee test service icinde ");
         Optional<Recipe> optionalRecipeCommand = findById(l);
        return recipeToRecipeCommand.convert(optionalRecipeCommand.get());
     }

@@ -3,7 +3,9 @@ package com.example.recipe_application.services;
 import com.example.recipe_application.converters.RecipeCommandToRecipe;
 import com.example.recipe_application.converters.RecipeToRecipeCommand;
 import com.example.recipe_application.domain.Recipe;
+import com.example.recipe_application.exceptions.NotFoundException;
 import com.example.recipe_application.repository.RecipeRepository;
+import org.hibernate.annotations.NotFound;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -56,6 +58,26 @@ class RecipeServiceImplTest {
         verify(recipeRepository, times(1)).findById(anyLong());
         verify(recipeRepository, never()).findAll();
     }
+
+
+//    @Test(expected = NotFoundException.class)
+//    void getRecipeByIdTestNotFound() throws Exception{
+//        Optional<Recipe> recipeOptional = Optional.empty();
+//        when(recipeRepository.findById(anyLong())).thenReturn(recipeOptional);
+//
+//        //bakılacak -- ve 404 sayfası da donmuyor
+//      Recipe returnedRecipe = recipeService.findById(1L);
+//        //should go boom
+//    }
+
+
+    @Test
+    void getRecipeByIdTestNotFound() {
+        when(recipeRepository.findById(anyLong())).thenReturn(Optional.empty());
+
+        assertThrows(NotFoundException.class, () -> recipeService.findById(1L));
+    }
+
 
     @Test
     void deleteById() throws Exception{

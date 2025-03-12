@@ -3,6 +3,8 @@ package com.example.recipe_application.controllers;
 import com.example.recipe_application.commands.RecipeCommand;
 import com.example.recipe_application.converters.RecipeCommandToRecipe;
 import com.example.recipe_application.domain.Recipe;
+import com.example.recipe_application.exceptions.NotFoundException;
+import com.example.recipe_application.services.CategoryService;
 import com.example.recipe_application.services.RecipeService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,6 +14,9 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
+import java.util.Optional;
+
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
@@ -21,6 +26,8 @@ class RecipeControllerTest {
 
     @Mock
     RecipeService recipeService;
+    @Mock
+    CategoryService categoryService;
     //@InjectMocks
     RecipeController recipeController;
     RecipeCommandToRecipe recipeCommandToRecipe;
@@ -28,7 +35,7 @@ class RecipeControllerTest {
     @BeforeEach
     void setUp() throws Exception{
         MockitoAnnotations.openMocks(this);
-        recipeController = new RecipeController(recipeService);
+        recipeController = new RecipeController(recipeService, categoryService);
         mockMvc = MockMvcBuilders.standaloneSetup(recipeController).build();
     }
 
@@ -43,6 +50,29 @@ class RecipeControllerTest {
                 .andExpect(view().name("recipe/show"));
     }
 
+    @Test
+    void testGetRecipeNumberFormatException() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/recipe/asdf/show"))
+                .andExpect(status().isBadRequest())
+                .andExpect(view().name("400error"));
+    }
+
+
+    @Test
+    void testGetRecipeNotFound() throws Exception{
+       when(recipeService.findById(anyLong())).thenThrow(NotFoundException.class);
+
+       mockMvc.perform(MockMvcRequestBuilders.get("/recipe/111/show"))
+               .andExpect(status().isNotFound())
+               .andExpect(view().name("404error"));
+
+        //        Recipe recipe = new Recipe();
+//        recipe.setId(1L);
+//        when(recipeService.findById(anyLong())).thenThrow(NotFoundException.class);
+//
+//               mockMvc.perform(MockMvcRequestBuilders.get("/recipe/1/show"))
+//               .andExpect(status().isNotFound());
+    }
     @Test
     void getNewRecipeForm() throws Exception {
         RecipeCommand recipeCommand = new RecipeCommand();
