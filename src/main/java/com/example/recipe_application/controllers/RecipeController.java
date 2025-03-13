@@ -7,6 +7,7 @@ import com.example.recipe_application.domain.Recipe;
 import com.example.recipe_application.exceptions.NotFoundException;
 import com.example.recipe_application.services.CategoryService;
 import com.example.recipe_application.services.RecipeService;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -113,13 +114,13 @@ public class RecipeController {
 
 
     @PostMapping("/recipe")
-    public String saveOrUpdate(@ModelAttribute RecipeCommand recipeCommand,
+    public String saveOrUpdate(@Valid @ModelAttribute("recipe") RecipeCommand recipeCommand,
                                BindingResult bindingResult) {
 
         // Eğer validation hatası varsa, formu tekrar render et
         if (bindingResult.hasErrors()) {
             System.out.println("Hata var, formu geri gönder");
-            //return "recipe/form";  // Hata varsa formu geri gönderiyoruz
+            return "recipe/form";  // Hata varsa formu geri gönderiyoruz
         }
 
         // Kategori ID'lerini CategoryCommand nesnelerine dönüştür

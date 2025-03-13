@@ -59,7 +59,6 @@ class RecipeControllerTest {
                 .andExpect(view().name("400error"));
     }
 
-
     @Test
     void testGetRecipeNotFound() throws Exception{
        when(recipeService.findById(anyLong())).thenThrow(NotFoundException.class);
@@ -99,6 +98,22 @@ class RecipeControllerTest {
       )
               .andExpect(status().is3xxRedirection())
               .andExpect(view().name("redirect:/recipe/2/show"));
+    }
+
+    @Test
+    void postNewRecipeFormValidationFail() throws Exception{
+        RecipeCommand recipeCommand = new RecipeCommand();
+        recipeCommand.setId(2L);
+
+        when(recipeService.saveRecipeCommand(any())).thenReturn(recipeCommand);
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/recipe")
+                        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                        .param("id","")
+                )
+                .andExpect(status().isOk())
+                .andExpect(model().attributeExists("recipe"))
+                .andExpect(view().name("recipe/recipeform"));
     }
 
     @Test
